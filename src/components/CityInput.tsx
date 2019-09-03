@@ -8,7 +8,7 @@ export const CityInput: React.FC<Props> = (props) => {
   const [ city, setCity ] = useState<string>('')
   const _handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value)
-  }, [])
+  }, [props])
   const _handleOnSubmit = useCallback((e: FormEvent) => {
     e.preventDefault();
     if (city.length === 0) {
@@ -19,7 +19,6 @@ export const CityInput: React.FC<Props> = (props) => {
   }, [city])
   return (
     <form onSubmit={_handleOnSubmit}>
-      <p>{ city }</p>
       <input type="text" placeholder="都市名" onChange={_handleOnChange} />
       <button type="submit">追加</button>
     </form>
