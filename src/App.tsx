@@ -3,6 +3,7 @@ import './App.css';
 import { List } from './components/List'
 import { CityInput } from './components/CityInput'
 import { CurrentWeather }　from './components/CurrentWeather';
+import { WeeklyWeather }　from './components/WeeklyWeather';
 import { IStore, Store } from './store'
 import { reducer, Action } from './reducer'
 import { addCity, selectCity } from './action'
@@ -24,6 +25,14 @@ const App: React.FC = () => {
     )
   }, [store.selectedCity])
 
+
+  const _weeklyWeather = useMemo(() => {
+    if (!store.selectedCity) return null
+    return (
+      <WeeklyWeather city={ store.selectedCity.name } />
+    )
+  }, [store.selectedCity])
+
   return (
     <div className="container">
       <aside className="sub-container">
@@ -32,6 +41,7 @@ const App: React.FC = () => {
       </aside>
       <main className="main-container">
         { _currentWeather }
+        { _weeklyWeather }
       </main>
     </div>
   );
